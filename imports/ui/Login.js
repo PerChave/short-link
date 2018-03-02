@@ -2,13 +2,18 @@ import React from 'react';
 // import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
 import { formatRoute } from 'react-router-named-routes';
-import { SIGNUP } from '../route/routes';
+import { SIGNUP, LINK } from '../route/routes';
 
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       error: ''
+    }
+  }
+  componentWillMount() {
+    if (Meteor.userId()) {
+      this.props.history.replace(formatRoute(LINK));
     }
   }
   render() {

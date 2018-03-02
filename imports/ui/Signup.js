@@ -34,7 +34,11 @@ export default class Signup extends React.Component {
     let password = this.refs.password.value;
 
     Accounts.createUser({email, password}, (err) => {
-      if (err) this.setState({error: err.message});
+      if (err) {
+        this.setState({error: err.reason})
+      } else {
+        this.setState({error: ''})
+      }
     });
   }
 }

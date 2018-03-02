@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Tracker } from 'meteor/tracker';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { LOGIN, SIGNUP, LINK } from '../imports/route/routes';
 
