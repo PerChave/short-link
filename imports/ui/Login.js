@@ -1,8 +1,8 @@
+import { Meteor } from 'meteor/meteor';
 import React from 'react';
-// import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
 import { formatRoute } from 'react-router-named-routes';
-import { SIGNUP, LINK } from '../route/routes';
+import { path } from '../router/routes';
 
 export default class Login extends React.Component {
   constructor (props) {
@@ -13,7 +13,7 @@ export default class Login extends React.Component {
   }
   componentWillMount () {
     if (Meteor.userId()) {
-      this.props.history.replace(formatRoute(LINK));
+      this.props.history.replace(formatRoute(path.links));
     }
   }
   render () {
@@ -29,7 +29,7 @@ export default class Login extends React.Component {
           <button>Login</button>
         </form>
 
-        <Link to={formatRoute(SIGNUP)}>Signup</Link>
+        <Link to={formatRoute(path.signup)}>Signup</Link>
       </div>
     );
   }

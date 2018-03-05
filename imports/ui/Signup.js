@@ -2,7 +2,7 @@ import React from 'react';
 import { Accounts } from 'meteor/accounts-base';
 import { Link } from 'react-router-dom';
 import { formatRoute } from 'react-router-named-routes';
-import { LOGIN, LINK } from '../route/routes';
+import { path } from '../router/routes';
 
 export default class Signup extends React.Component {
   constructor (props) {
@@ -23,7 +23,7 @@ export default class Signup extends React.Component {
           <input type="password" ref="password" name="password" placeholder="Password"/>
           <button>Create Account</button>
         </form>
-        <Link to={formatRoute(LOGIN)}>Login</Link>
+        <Link to={formatRoute(path.login)}>Login</Link>
       </div>
     );
   }
@@ -44,7 +44,7 @@ export default class Signup extends React.Component {
         this.setState({error: err.reason});
       } else {
         this.setState({error: ''});
-        this.props.history.replace(formatRoute(LINK));
+        this.props.history.replace(formatRoute(path.links));
       }
     });
   }
