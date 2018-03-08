@@ -23,7 +23,7 @@ export default class Login extends React.Component {
 
         {this.state.error ? <p>{this.state.error}</p> : undefined}
 
-        <form onSubmit={this.onSubmit.bind(this)} noValidate>
+        <form onSubmit={this.onSubmit.bind(this)}>
           <input type="email" ref="email" name="email" placeholder="Email"/>
           <input type="password" ref="password" name="password" placeholder="Password"/>
           <button>Login</button>
@@ -44,6 +44,7 @@ export default class Login extends React.Component {
         this.setState({error: err.reason});
       } else {
         this.setState({error: ''});
+        this.props.history.replace(formatRoute(path.links));
       }
     });
   }
