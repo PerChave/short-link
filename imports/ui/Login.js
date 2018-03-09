@@ -43,7 +43,6 @@ export default class Login extends React.Component {
       if (err) {
         this.setState({error: err.reason});
       } else {
-        this.setState({error: ''});
         this.props.history.replace(formatRoute(path.links));
       }
     });
