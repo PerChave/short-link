@@ -12,6 +12,7 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-router-named-routes": "0.0.22",
+    "shortid": "^2.2.8",
     "simpl-schema": "^1.4.2"
   }
 }

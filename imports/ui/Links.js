@@ -24,7 +24,7 @@ export default class Links extends React.Component {
     e.preventDefault();
 
     if (url) {
-      Meteor.call('links.insert', url, (e, r) => {
+      Meteor.call('link.insert', url, (e, r) => {
         if (e) {
           this.setState({error: e.message});
         } else {
