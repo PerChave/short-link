@@ -8,12 +8,6 @@ import PrivateHeader from './PrivateHeader';
 import AddLink from './AddLink';
 
 export default class Links extends React.Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      error: ''
-    };
-  }
   componentWillMount () {
     if (!Meteor.userId()) {
       this.props.history.replace(formatRoute(path.login));

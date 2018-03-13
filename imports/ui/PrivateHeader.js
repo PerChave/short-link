@@ -5,23 +5,38 @@ import { path } from '../router/routes';
 import { formatRoute } from 'react-router-named-routes';
 import createHistory from 'history/createBrowserHistory';
 
-export default class PrivateHeader extends React.Component {
-  onLogout () {
-    Accounts.logout(() => {
-      this.props.history.push(formatRoute(path.login));
-    });
-  }
-  render () {
-    return (
-      <div>
-        <h1>{ this.props.title }</h1>
-        <button onClick={() => this.onLogout()}>Logout</button>
-      </div>
-    );
-  }
-}
+// export default class PrivateHeader extends React.Component {
+//   onLogout () {
+//     Accounts.logout(() => {
+//       this.props.history.push(formatRoute(path.login));
+//     });
+//   }
+//   render () {
+//     return (
+//       <div>
+//         <h1>{ this.props.title }</h1>
+//         <button onClick={() => this.onLogout()}>Logout</button>
+//       </div>
+//     );
+//   }
+// }
+
+const PrivateHeader = (props) => {
+  return (
+    <div>
+      <h1>{ props.title }</h1>
+      <button onClick={() => {
+        Accounts.logout(() => {
+          props.history.push(formatRoute(path.login));
+        });
+      }}>Logout</button>
+    </div>
+  );
+};
 
 PrivateHeader.propTypes = {
   title: PropTypes.string.isRequired,
   history: PropTypes.objectOf(createHistory).isRequired
 };
+
+export default PrivateHeader;
