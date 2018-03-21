@@ -6,6 +6,7 @@ import { formatRoute } from 'react-router-named-routes';
 import LinksList from './LinksList';
 import PrivateHeader from './PrivateHeader';
 import AddLink from './AddLink';
+import LinksListFilter from './LinksListFilter';
 
 export default class Links extends React.Component {
   componentWillMount () {
@@ -17,6 +18,7 @@ export default class Links extends React.Component {
     return (
       <div>
         <PrivateHeader title="Vos liens" history={this.props.history} />
+        <LinksListFilter />
         <LinksList />
         <AddLink />
       </div>

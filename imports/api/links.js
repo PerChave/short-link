@@ -8,11 +8,7 @@ export const Links = new Mongo.Collection('links');
 if (Meteor.isServer) {
   Meteor.publish('links', function () {
     if (this.userId) {
-      return Links.find({ userId: this.userId }, {
-        fields: {
-          userId: 0
-        }
-      });
+      return Links.find({ userId: this.userId });
     } else {
       return [];
     }

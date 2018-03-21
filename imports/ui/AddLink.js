@@ -4,12 +4,15 @@ import React from 'react';
 export default class AddLink extends React.Component {
   constructor (props) {
     super(props);
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
     this.state = {
-      error: ''
+      error: '',
+      url: ''
     };
   }
   onSubmit (e) {
-    const url = this.refs.url.value.trim();
+    const { url } = this.state;
     e.preventDefault();
 
     if (url) {
@@ -18,18 +21,26 @@ export default class AddLink extends React.Component {
           this.setState({error: e.message});
         } else {
           this.setState({error: ''});
+          this.setState({'url': ''});
         }
       });
-      this.refs.url.value = '';
     }
+  }
+  onChange (e) {
+    this.setState({'url': e.target.value.trim()});
   }
   render () {
     return (
       <div>
         <p>Add Link</p>
         {this.state.error ? <p>{this.state.error}</p> : undefined}
-        <form onSubmit={this.onSubmit.bind(this)}>
-          <input type="text" ref="url" placeholder="URL" />
+        <form onSubmit={this.onSubmit}>
+          <input
+            type="text"
+            placeholder="URL"
+            value={this.state.url}
+            onChange={this.onChange}
+          />
           <button type="submit">Add Link</button>
         </form>
       </div>

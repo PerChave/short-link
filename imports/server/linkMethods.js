@@ -21,7 +21,19 @@ Meteor.methods({
     Links.insert({
       _id: shortid.generate(),
       url,
-      userId: this.userId
+      userId: this.userId,
+      visible: true
     });
+  },
+  'link.toggleVisible' (_id) {
+    if (!this.userId) {
+      throw new Meteor.Error('not-authorized');
+    }
+    const link = Links.findOne({_id, userId: this.userId});
+    if (link) {
+      Links.update({_id}, { $set: {visible: !link.visible} });
+    } else {
+      throw new Meteor.Error('Link is undefined');
+    }
   }
 });
