@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Clipboard from 'clipboard';
+import moment from '../services/momentFr';
 
 export default class LinksListItem extends React.Component {
   constructor (props) {
@@ -24,13 +25,23 @@ export default class LinksListItem extends React.Component {
   componentWillUnmount () {
     this.clipboard.destroy()
   }
+  renderStats () {
+    const visitMessage = this.props.link.visitedCount === 1 ? "visite" : "visites";
+    let visitedMessage = null;
+
+    if (typeof this.props.link.lastVisitedAt === 'number') {
+      visitedMessage = ` - (visité ${moment(this.props.link.lastVisitedAt).fromNow()})`;
+    }
+
+    return <p>{this.props.link.visitedCount} {visitMessage} {visitedMessage}</p>
+  }
   render () {
     const link = this.props.link;
     return (
       <div>
         <p>{link.url}</p>
         <p>{Meteor.absoluteUrl(link._id)}</p>
-        <p>{link.visible.toString()}</p>
+        {this.renderStats()}
         <button ref="copy" data-clipboard-text={Meteor.absoluteUrl(link._id)} >{this.state.justCopied ? "Copied" : "Copy"}</button>
         <button ref="hide" onClick={() => {
           Meteor.call('link.toggleVisible', link._id);

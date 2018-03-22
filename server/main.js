@@ -17,6 +17,7 @@ Meteor.startup(() => {
       res.statusCode = 302;
       res.setHeader('location', redirectLink.url);
       res.end();
+      Meteor.call('links.trackVisit', _id);
     } else {
       next();
     }
