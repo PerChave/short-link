@@ -19,8 +19,8 @@ export default class Links extends React.Component {
       <div>
         <PrivateHeader title="Vos liens" history={this.props.history} />
         <LinksListFilter />
-        <LinksList />
         <AddLink />
+        <LinksList />
       </div>
     );
   }

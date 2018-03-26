@@ -42,6 +42,7 @@ export default class LinksListItem extends React.Component {
         <p>{link.url}</p>
         <p>{Meteor.absoluteUrl(link._id)}</p>
         {this.renderStats()}
+        <a href={Meteor.absoluteUrl(link._id)} target="_blank">Visit</a>
         <button ref="copy" data-clipboard-text={Meteor.absoluteUrl(link._id)} >{this.state.justCopied ? "Copied" : "Copy"}</button>
         <button ref="hide" onClick={() => {
           Meteor.call('link.toggleVisible', link._id);
