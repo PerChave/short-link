@@ -33,18 +33,18 @@ export default class LinksListItem extends React.Component {
       visitedMessage = ` - (visité ${moment(this.props.link.lastVisitedAt).fromNow()})`;
     }
 
-    return <p>{this.props.link.visitedCount} {visitMessage} {visitedMessage}</p>
+    return <p className="item__message">{this.props.link.visitedCount} {visitMessage} {visitedMessage}</p>
   }
   render () {
     const link = this.props.link;
     return (
-      <div>
-        <p>{link.url}</p>
-        <p>{Meteor.absoluteUrl(link._id)}</p>
+      <div className="item">
+        <h2>{link.url}</h2>
+        <p className="item__message">{Meteor.absoluteUrl(link._id)}</p>
         {this.renderStats()}
-        <a href={Meteor.absoluteUrl(link._id)} target="_blank">Visit</a>
-        <button ref="copy" data-clipboard-text={Meteor.absoluteUrl(link._id)} >{this.state.justCopied ? "Copied" : "Copy"}</button>
-        <button ref="hide" onClick={() => {
+        <a className="button button--pill button--link" href={Meteor.absoluteUrl(link._id)} target="_blank">Visit</a>
+        <button className="button button--link button--pill" ref="copy" data-clipboard-text={Meteor.absoluteUrl(link._id)} >{this.state.justCopied ? "Copied" : "Copy"}</button>
+        <button className="button button--link button--pill" ref="hide" onClick={() => {
           Meteor.call('link.toggleVisible', link._id);
         }}>{link.visible ? "visible" : "hidden"}</button>
       </div>

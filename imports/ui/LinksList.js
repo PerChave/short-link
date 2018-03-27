@@ -5,6 +5,7 @@ import { Session } from 'meteor/session';
 
 import { Links } from '../api/links';
 import LinksListItem from './LinksListItem';
+import FlipMove from 'react-flip-move';
 
 export default class LinksList extends React.Component {
   constructor (props) {
@@ -27,15 +28,27 @@ export default class LinksList extends React.Component {
     this.linksTracker.stop();
   }
   renderLinksListItem () {
-    return this.state.links.map((link) => <LinksListItem key={link._id} link={link} />);
+    if (this.state.links.length === 0) {
+      return (
+        <div className="item">
+          <p className="item__status-message">Votre liste est vide</p>
+        </div>
+      );
+    } else {
+      return this.state.links.map((link) => <LinksListItem key={link._id} link={link} />);
+      // return (
+      //   <FlipMove duration={750} easing="ease-out">
+      //     {this.state.links.map((link) => <LinksListItem key={link._id} link={link} />)}
+      //   </FlipMove>
+      // );
+    }
   }
   render () {
     return (
       <div>
-        <p>Links List</p>
-        <div>
+        <FlipMove>
           {this.renderLinksListItem()}
-        </div>
+        </FlipMove>
       </div>
     );
   }

@@ -13,17 +13,19 @@ export default class Signup extends React.Component {
   }
   render () {
     return (
-      <div>
-        <h1>Signup to Short Lnk</h1>
+      <div className="boxed-view">
+        <div className="boxed-view__box">
+          <h1>Short Lnk</h1>
 
-        {this.state.error ? <p>{this.state.error}</p> : undefined}
+          {this.state.error ? <p>{this.state.error}</p> : undefined}
 
-        <form onSubmit={this.onSubmit.bind(this)}>
-          <input type="email" ref="email" name="email" placeholder="Email"/>
-          <input type="password" ref="password" name="password" placeholder="Password"/>
-          <button>Create Account</button>
-        </form>
-        <Link to={formatRoute(path.login)}>Login</Link>
+          <form className="box-view__form" onSubmit={this.onSubmit.bind(this)}>
+            <input type="email" ref="email" name="email" placeholder="Email"/>
+            <input type="password" ref="password" name="password" placeholder="Password"/>
+            <button className="button">Create Account</button>
+          </form>
+          <Link to={formatRoute(path.login)}>Login</Link>
+        </div>
       </div>
     );
   }
