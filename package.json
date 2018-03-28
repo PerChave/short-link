@@ -18,5 +18,8 @@
     "react-router-named-routes": "0.0.22",
     "shortid": "^2.2.8",
     "simpl-schema": "^1.4.2"
+  },
+  "engines": {
+    "node": "8.9.4"
   }
 }
